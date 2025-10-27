@@ -6,6 +6,8 @@ crash.log
 .terraform/
 **/.terraform/
 # Ignore all Terraform state files from all directories
+**/*.pem
+**/*.pem.*
 **/terraform.tfstate
 **/terraform.tfstate.*
 **/.terraform.lock.hcl.*
