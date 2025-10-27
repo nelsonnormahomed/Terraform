@@ -26,10 +26,7 @@ jobs:
           docker save -o supermariolatestdockerimage.tar docker.io/nelsonnormahomed/supermariogitopsproject:${{ env.VERSION }}
      
       - name: Find Docker Image
-        run: sudo find / -name supermariolatestdockerimage.tar
-
-      - name: Find Docker Image
-        run: mkdir /github/workspace/ 
+        run: mkdir -p /github/workspace/ 
 
       - name: Run Trivy vulnerability scanner in tarball mode
         uses: aquasecurity/trivy-action@master
