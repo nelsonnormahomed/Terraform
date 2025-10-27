@@ -19,11 +19,11 @@ jobs:
 
       - name: List contents of subfolder
         run: ls -l
-        working-directory: ./github/workspace 
+        working-directory: /github/workspace 
 
       - name: Build Docker image from subfolder
-        run: docker build -t my-app .
-        working-directory: ./github/workspace
+        run: docker build -t supermariogitopsproject .
+        working-directory: /github/workspace
  
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
