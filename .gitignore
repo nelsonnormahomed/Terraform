@@ -1,0 +1,17 @@
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.*
+crash.log
+*.backup
+.terraform/
+**/.terraform/
+# Ignore all Terraform state files from all directories
+**/terraform.tfstate
+**/terraform.tfstate.*
+.terraform/
+**/.tfstate/
+**/terraform.tfstate/
+**/terraform.tfstate.backup/
+**/.terraform.lock.hcl/
+AzureK8TF/gitops-aks-terraform-infra-repo/.terraform
+ArgoCDTF/gitops-aks-argocd-terraform-repo/.terraform
