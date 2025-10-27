@@ -23,14 +23,11 @@ jobs:
       - name: Get Docker Image from Docker Hub
         run: |
           docker pull docker.io/nelsonnormahomed/supermariogitopsproject:${{ env.VERSION }}
-          docker save -o supermariolatestdockerimage.tar docker.io/nelsonnormahomed/supermariogitopsproject:${{ env.VERSION }}
+          docker save -o /tmp/supermariolatestdockerimage.tar docker.io/nelsonnormahomed/supermariogitopsproject:${{ env.VERSION }}
      
-      - name: Find Docker Image
-        run: sudo mkdir -p /github/workspace/ 
-
       - name: Run Trivy vulnerability scanner in tarball mode
         uses: aquasecurity/trivy-action@master
         with:
-          input: /github/workspace/supermariolatestdockerimage.tar
+          input: /tmp/supermariolatestdockerimage.tar
           exit-code: '1'
           severity: 'CRITICAL,HIGH'
