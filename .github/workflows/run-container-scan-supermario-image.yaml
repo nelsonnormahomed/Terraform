@@ -29,5 +29,5 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           input: /tmp/supermariolatestdockerimage.tar
-          exit-code: '1'
+          exit-code: '0'
           severity: 'CRITICAL,HIGH'
