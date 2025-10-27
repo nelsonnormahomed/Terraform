@@ -45,8 +45,8 @@ jobs:
  
       - name: Build and Push Docker Image
         run: |
-          docker build -t docker.io/raghuthesecurityexpert/supermariogitopsproject:${{ env.VERSION }} .
-          docker push docker.io/raghuthesecurityexpert/supermariogitopsproject:${{ env.VERSION }}
+          docker build -t docker.io/nelsonnormahomed/supermariogitopsproject:${{ env.VERSION }} .
+          docker push docker.io/nelsonnormahomed/supermariogitopsproject:${{ env.VERSION }}
  
   run_container_image_scan_on_supermario_docker_image:
     runs-on: ubuntu-latest
@@ -61,13 +61,13 @@ jobs:
         
       - name: Get Docker Image from Docker Hub
         run: |
-          docker pull docker.io/raghuthesecurityexpert/supermariogitopsproject:${{ env.VERSION }}
-          docker save -o supermariolatestdockerimage.tar docker.io/raghuthesecurityexpert/supermariogitopsproject:${{ env.VERSION }}
+          docker pull docker.io/nelsonnormahomed/supermariogitopsproject:${{ env.VERSION }}
+          docker save -o /tmp/supermariolatestdockerimage.tar docker.io/raghuthesecurityexpert/supermariogitopsproject:${{ env.VERSION }}
      
       - name: Run Trivy vulnerability scanner in tarball mode
         uses: aquasecurity/trivy-action@master
         with:
-          input: /github/workspace/supermariolatestdockerimage.tar
+          input: /tmp/supermariolatestdockerimage.tar
           exit-code: '0'
           severity: 'CRITICAL,HIGH'
           
@@ -87,7 +87,7 @@ jobs:
       - name: Update Deployment YAML
         run: |
           git pull
-          sed -i "s|image: raghuthesecurityexpert/supermariogitopsproject:.*$|image: raghuthesecurityexpert/supermariogitopsproject:${{ env.VERSION }}|" deployment.yaml
+          sed -i "s|image: nelsonnormahomed/supermariogitopsproject:.*$|image: nelsonnormahomed/supermariogitopsproject:${{ env.VERSION }}|" deployment.yaml
           echo ${{ env.VERSION }} > version.txt
           CURRENT_VERSION=$(cat version.txt)
           git add deployment.yaml version.txt
